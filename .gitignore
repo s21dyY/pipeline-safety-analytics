@@ -1,0 +1,17 @@
+# secrets
+.env
+keys/
+
+# data (download from PHMSA, don't commit)
+data/
+
+# dbt build output and local state
+target/
+logs/
+dbt_packages/
+.user.yml
+*.duckdb
+
+# python
+.venv/
+__pycache__/

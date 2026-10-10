@@ -1,0 +1,25 @@
+dbt_pipeline_safety:
+  target: snowflake
+  outputs:
+    snowflake:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"       # who to connect to
+      user: TRANSFORMER_USER                                       # the service user
+      private_key: "{{ env_var('SNOWFLAKE_DBT_PRIVATE_KEY') }}"  # key from env, never in the file
+      role: TRANSFORMER                                    # permissions to use
+      warehouse: DBT_PIPELINE_WH                           # compute to run on
+      database: ANALYTICS                                  # where dbt BUILDS
+      schema: dbt_sandy                                    # your personal dev schema
+      threads: 4
+
+    dev:
+      type: duckdb
+      path: dev.duckdb
+      threads: 1
+
+    prod:
+      type: duckdb
+      path: prod.duckdb
+      threads: 4
+
+  
