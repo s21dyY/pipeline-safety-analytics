@@ -6,3 +6,21 @@ sources:
     schema: phmsa
     tables:
       - name: gd_incidents
+  
+models:
+  - name: stg_phmsa__gd_incidents
+    columns:
+      - name: report_number
+        data_tests:
+          - unique
+          - not_null
+
+      - name: operator_id
+        data_tests:
+          - not_null
+
+      - name: incident_at
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
